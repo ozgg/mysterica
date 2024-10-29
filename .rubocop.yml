@@ -1,0 +1,16 @@
+# Omakase Ruby styling for Rails
+# inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+require:
+  - rubocop-factory_bot
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
+
+AllCops:
+  NewCops: enable
+
+Metrics/MethodLength:
+  CountAsOne: ['heredoc']
