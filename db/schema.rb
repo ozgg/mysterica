@@ -10,9 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_31_080650) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_31_083628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dream_interpretations", comment: "Dream interpretations", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.bigint "dream_id", null: false
+    t.bigint "user_id", null: false
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dream_id"], name: "index_dream_interpretations_on_dream_id"
+    t.index ["user_id"], name: "index_dream_interpretations_on_user_id"
+    t.index ["uuid"], name: "index_dream_interpretations_on_uuid", unique: true
+  end
+
+  create_table "dream_personal_patterns", comment: "Links between dreams and personal patterns", force: :cascade do |t|
+    t.bigint "dream_id", null: false
+    t.bigint "personal_pattern_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dream_id"], name: "index_dream_personal_patterns_on_dream_id"
+    t.index ["personal_pattern_id"], name: "index_dream_personal_patterns_on_personal_pattern_id"
+  end
+
+  create_table "dreams", comment: "Dreams", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.bigint "user_id"
+    t.bigint "sleep_place_id"
+    t.integer "lucidity", limit: 2, default: 0, null: false
+    t.integer "privacy", limit: 2, default: 0, null: false
+    t.datetime "deleted_at"
+    t.string "title"
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "date_trunc('month'::text, created_at)", name: "dreams_created_month_idx"
+    t.index ["sleep_place_id"], name: "index_dreams_on_sleep_place_id"
+    t.index ["user_id"], name: "index_dreams_on_user_id"
+    t.index ["uuid"], name: "index_dreams_on_uuid", unique: true
+  end
+
+  create_table "personal_patterns", comment: "Personal dream patterns", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_personal_patterns_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_personal_patterns_on_user_id"
+    t.index ["uuid"], name: "index_personal_patterns_on_uuid", unique: true
+  end
 
   create_table "sites", comment: "Sites", force: :cascade do |t|
     t.boolean "active", default: true, null: false
@@ -23,6 +72,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_31_080650) do
     t.datetime "updated_at", null: false
     t.index "lower((slug)::text)", name: "index_sites_on_lower_slug", unique: true
     t.index ["token"], name: "index_sites_on_token", unique: true
+  end
+
+  create_table "sleep_places", comment: "Places where dreams are seen", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_sleep_places_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_sleep_places_on_user_id"
+    t.index ["uuid"], name: "index_sleep_places_on_uuid", unique: true
   end
 
   create_table "users", comment: "Users", force: :cascade do |t|
@@ -50,6 +110,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_31_080650) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "dream_interpretations", "dreams", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dream_interpretations", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dream_personal_patterns", "dreams", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dream_personal_patterns", "personal_patterns", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dreams", "sleep_places", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "dreams", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "personal_patterns", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "users", "sites", on_update: :cascade, on_delete: :nullify
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
 end
