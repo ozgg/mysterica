@@ -63,4 +63,48 @@ RSpec.describe 'API::Authentication' do
       end
     end
   end
+
+  describe 'post /api/login', :focus do
+    before do
+      post('/api/login', params: { login: user.slug, password: })
+    end
+
+    context 'when credentials are valid' do
+      let(:password) { 'secret' }
+
+      it 'responds with OK status' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'displays authentication token' do
+        expected_response = {
+          'meta' => { 'access_token' => be_a(String), 'token_type' => 'Bearer' }
+        }
+        expect(response.parsed_body).to match(expected_response)
+      end
+
+      it 'does not contain errors in response' do
+        expect(response.parsed_body).not_to have_key(:errors)
+      end
+    end
+
+    context 'when credentials are invalid' do
+      let(:password) { 'incorrect' }
+
+      it 'responds with Unauthorized status' do
+        expect(response).to have_http_status(:unauthorized)
+      end
+
+      it 'does not display access token' do
+        expect(response.parsed_body).not_to have_key(:access_token)
+      end
+
+      it 'displays error description' do
+        expected_response = {
+          'errors' => [{ 'code' => 'invalid_credentials', 'status' => 401 }]
+        }
+        expect(response.parsed_body).to eq(expected_response)
+      end
+    end
+  end
 end
