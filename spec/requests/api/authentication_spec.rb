@@ -55,7 +55,7 @@ RSpec.describe 'API::Authentication' do
       end
 
       it 'does not contain errors in response' do
-        expect(response.parsed_body).not_to have_key(:errors)
+        expect(response.parsed_body).not_to have_key('errors')
       end
 
       it 'displays user information' do
@@ -64,7 +64,7 @@ RSpec.describe 'API::Authentication' do
     end
   end
 
-  describe 'post /api/login', :focus do
+  describe 'post /api/login' do
     before do
       post('/api/login', params: { login: user.slug, password: })
     end
@@ -84,7 +84,7 @@ RSpec.describe 'API::Authentication' do
       end
 
       it 'does not contain errors in response' do
-        expect(response.parsed_body).not_to have_key(:errors)
+        expect(response.parsed_body).not_to have_key('errors')
       end
     end
 
@@ -96,7 +96,7 @@ RSpec.describe 'API::Authentication' do
       end
 
       it 'does not display access token' do
-        expect(response.parsed_body).not_to have_key(:access_token)
+        expect(response.parsed_body).not_to have_key('access_token')
       end
 
       it 'displays error description' do
