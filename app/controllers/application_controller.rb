@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
   def require_authentication
     return unless current_user.nil?
 
-    render json: { message: 'Please log in' }, status: :unauthorized
+    render json: { errors: { token: 'invalid' } }, status: :unauthorized
   end
 
   private
@@ -42,6 +42,6 @@ class ApplicationController < ActionController::API
     return unless jwt_token
 
     user_id = decoded_token[0]['user_id']
-    User.find_by(id: user_id)
+    User.find_by(uuid: user_id)
   end
 end
