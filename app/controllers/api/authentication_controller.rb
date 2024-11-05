@@ -24,16 +24,25 @@ module Api
 
     def render_authentication_result(result)
       if result.respond_to?(:uuid)
-        @token = JWT.encode({ user_id: result.uuid }, ENV.fetch('JWT_KEY'))
+        render_token(JWT.encode({ user_id: result.uuid }, ENV.fetch('JWT_KEY')))
       else
-        unauthorized = {
-          errors: [
-            { code: 'invalid_credentials', status: 401 }
-          ]
-        }
-
-        render json: unauthorized, status: :unauthorized
+        render_error
       end
+    end
+
+    def render_token(token)
+      @token = token
+      render 'api/shared/token'
+    end
+
+    def render_error
+      unauthorized = {
+        errors: [
+          { code: 'invalid_credentials', status: 401 }
+        ]
+      }
+
+      render json: unauthorized, status: :unauthorized
     end
   end
 end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'me' => 'authentication#me'
     post 'login' => 'authentication#login'
+    post 'join' => 'users#create'
   end
 
   # Defines the root path route ("/")
