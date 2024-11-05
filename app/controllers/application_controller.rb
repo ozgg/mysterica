@@ -14,6 +14,10 @@ class ApplicationController < ActionController::API
     @current_user ||= user_from_token
   end
 
+  def current_site
+    @current_site ||= site_from_header
+  end
+
   def require_authentication
     return unless current_user.nil?
 
@@ -43,5 +47,13 @@ class ApplicationController < ActionController::API
 
     user_id = decoded_token[0]['user_id']
     User.find_by(uuid: user_id)
+  end
+
+  def site_from_header
+    site_id = request.headers['Site_id']
+
+    return if site_id.blank?
+
+    Site.find_by(uuid: site_id)
   end
 end

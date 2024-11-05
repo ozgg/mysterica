@@ -5,7 +5,7 @@ module Api
   class UsersController < ApplicationController
     # post /api/join
     def create
-      handler = Components::Users::ProfileHandler.new
+      handler = Components::Users::ProfileHandler.new(site: current_site)
       permitted = handler.class.permitted_parameters
       user = handler.register(params.require(:user).permit(permitted))
       if user.id.present?
