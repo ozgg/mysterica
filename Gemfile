@@ -31,7 +31,7 @@ group :development, :test do
   gem 'ostruct', '~> 0.6.1'
   gem 'pry', '~> 0.14.2'
   gem 'pry-byebug', '~> 3.10'
-  gem 'rspec-rails', '~> 7.0'
+  gem 'rspec-rails', '~> 7.1'
   gem 'shoulda-matchers', '~> 6.4'
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
