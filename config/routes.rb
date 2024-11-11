@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'me' => 'authentication#me'
     post 'login' => 'authentication#login'
     post 'join' => 'users#create'
+    patch 'me' => 'users#update'
   end
 
   # Defines the root path route ("/")

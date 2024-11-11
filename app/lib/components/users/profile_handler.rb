@@ -11,6 +11,15 @@ module Components
         user
       end
 
+      def update(parameters)
+        raise 'User is not set' if user.nil?
+
+        attributes = only_permitted_parameters(parameters).merge(site:)
+        user.update(attributes)
+        @errors = user.errors
+        user
+      end
+
       def self.permitted_parameters
         %i[email password password_confirmation slug]
       end
