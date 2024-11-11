@@ -10,8 +10,8 @@ gem 'jwt', '~> 2.9'
 gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
-gem 'rails', '~> 7.2.1', '>= 7.2.1.2'
-gem 'rails-i18n', '~> 7.0'
+gem 'rails', '~> 8.0.0'
+gem 'rails-i18n', '~> 8.0'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
