@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_31_083628) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_14_124605) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "dream_interpretations", comment: "Dream interpretations", force: :cascade do |t|
     t.uuid "uuid", null: false
@@ -24,6 +24,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_31_083628) do
     t.index ["dream_id"], name: "index_dream_interpretations_on_dream_id"
     t.index ["user_id"], name: "index_dream_interpretations_on_user_id"
     t.index ["uuid"], name: "index_dream_interpretations_on_uuid", unique: true
+  end
+
+  create_table "dream_patterns", comment: "Common dream patterns", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.string "name", null: false
+    t.string "summary", default: "", null: false, comment: "Summary of interpretation in a couple of sentences"
+    t.text "description", null: false, comment: "Detailed description of interpretation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "lower((name)::text)", name: "index_dream_patterns_on_lower_name", unique: true
+    t.index ["uuid"], name: "index_dream_patterns_on_uuid", unique: true
   end
 
   create_table "dream_personal_patterns", comment: "Links between dreams and personal patterns", force: :cascade do |t|
