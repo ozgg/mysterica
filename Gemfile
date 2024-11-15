@@ -41,7 +41,7 @@ end
 group :development do
   gem 'rubocop', '~> 1.67'
   gem 'rubocop-factory_bot', '~> 2.26'
-  gem 'rubocop-performance', '~> 1.22'
+  gem 'rubocop-performance', '~> 1.23'
   gem 'rubocop-rails', '~> 2.27'
   gem 'rubocop-rake', '~> 0.6.0'
   gem 'rubocop-rspec', '~> 3.2'
