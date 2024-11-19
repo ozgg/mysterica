@@ -18,4 +18,12 @@ class DreamPattern < ApplicationRecord
             length: { minimum: 1, maximum: 50 },
             uniqueness: { case_sensitive: false }
   validates :summary, length: { minimum: 1, maximum: 500 }, allow_blank: true
+
+  scope :ordered_by_name, -> { order(:name) }
+  scope :letter, ->(v) { where('name ilike ?', "#{v[0]}%") if v.present? }
+
+  # @param [String] name
+  def self.[](name)
+    find_by('lower(name) = ?', name.downcase)
+  end
 end

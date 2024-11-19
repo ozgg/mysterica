@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     post 'login' => 'authentication#login'
     post 'join' => 'users#create'
     patch 'me' => 'users#update'
+
+    scope 'dreambook', controller: :dreambook do
+      get '/' => :index, as: :dreambook_index
+      get '/:letter' => :letter, as: :dreambook_letter
+      get '/:letter/:name' => :show, as: :dreambook_pattern
+    end
   end
 
   # Defines the root path route ("/")
