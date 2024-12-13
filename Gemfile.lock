@@ -120,7 +120,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.8.2)
+    json (2.9.0)
     jwt (2.9.3)
       base64
     kaminari (1.2.2)
@@ -277,7 +277,7 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (3.2.0)
+    rubocop-rspec (3.3.0)
       rubocop (~> 1.61)
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
@@ -333,7 +333,7 @@ DEPENDENCIES
   rubocop-performance (~> 1.22)
   rubocop-rails (~> 2.27)
   rubocop-rake (~> 0.6.0)
-  rubocop-rspec (~> 3.2)
+  rubocop-rspec (~> 3.3)
   rubocop-rspec_rails (~> 2.30)
   shoulda-matchers (~> 6.4)
   tzinfo-data
