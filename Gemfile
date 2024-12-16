@@ -10,7 +10,7 @@ gem 'jwt', '~> 2.9'
 gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
-gem 'rails', '~> 8.0.0'
+gem 'rails', '~> 8.0.1'
 gem 'rails-i18n', '~> 8.0'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
