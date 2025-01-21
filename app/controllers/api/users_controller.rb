@@ -9,7 +9,7 @@ module Api
     def create
       handler = Components::Users::ProfileHandler.new(site: current_site)
       permitted = handler.class.permitted_parameters
-      user = handler.register(params.require(:user).permit(permitted))
+      user = handler.register(params.expect(user: [permitted]))
       if user.id.present?
         @token = encode_token(user_id: user.uuid)
         render 'api/shared/token', status: :created
@@ -23,7 +23,7 @@ module Api
     def update
       handler = Components::Users::ProfileHandler.new(site: current_site, user: current_user)
       permitted = handler.class.permitted_parameters
-      user = handler.update(params.require(:user).permit(permitted))
+      user = handler.update(params.expect(user: [permitted]))
       # byebug
       if handler.errors.blank?
         @user = user
