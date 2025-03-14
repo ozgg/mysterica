@@ -45,5 +45,5 @@ group :development do
   gem 'rubocop-rails', '~> 2.30'
   gem 'rubocop-rake', '~> 0.7.1'
   gem 'rubocop-rspec', '~> 3.5'
-  gem 'rubocop-rspec_rails', '~> 2.30'
+  gem 'rubocop-rspec_rails', '~> 2.31'
 end
