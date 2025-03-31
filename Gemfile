@@ -29,7 +29,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 2.1'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'ostruct', '~> 0.6.1'
-  gem 'pry', '~> 0.14.2'
+  gem 'pry', '~> 0.15.2'
   gem 'pry-byebug', '~> 3.10'
   gem 'rspec-rails', '~> 7.1'
   gem 'shoulda-matchers', '~> 6.4'
