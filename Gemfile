@@ -32,7 +32,7 @@ group :development, :test do
   gem 'pry', '~> 0.15.2'
   gem 'pry-byebug', '~> 3.10'
   gem 'rspec-rails', '~> 7.1'
-  gem 'shoulda-matchers', '~> 6.4'
+  gem 'shoulda-matchers', '~> 6.5'
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   # gem "rubocop-rails-omakase", require: false
