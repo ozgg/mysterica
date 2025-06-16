@@ -6,7 +6,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'dotenv-rails', '~> 3.1'
 gem 'jbuilder'
-gem 'jwt', '~> 2.10'
+gem 'jwt', '~> 3.0'
 gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
