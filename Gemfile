@@ -28,7 +28,7 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'database_cleaner', '~> 2.1'
   gem 'factory_bot_rails', '~> 6.4'
-  gem 'ostruct', '~> 0.6.1'
+  gem 'ostruct', '~> 0.6.2'
   gem 'pry', '~> 0.15.2'
   gem 'pry-byebug', '~> 3.10'
   gem 'rspec-rails', '~> 8.0'
