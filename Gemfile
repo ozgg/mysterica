@@ -27,7 +27,7 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
   gem 'database_cleaner', '~> 2.1'
-  gem 'factory_bot_rails', '~> 6.4'
+  gem 'factory_bot_rails', '~> 6.5'
   gem 'ostruct', '~> 0.6.1'
   gem 'pry', '~> 0.15.2'
   gem 'pry-byebug', '~> 3.10'
@@ -39,7 +39,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', '~> 1.76'
+  gem 'rubocop', '~> 1.79'
   gem 'rubocop-factory_bot', '~> 2.27'
   gem 'rubocop-performance', '~> 1.25'
   gem 'rubocop-rails', '~> 2.32'
