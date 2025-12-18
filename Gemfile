@@ -39,7 +39,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', '~> 1.81'
+  gem 'rubocop', '~> 1.82'
   gem 'rubocop-factory_bot', '~> 2.28'
   gem 'rubocop-performance', '~> 1.26'
   gem 'rubocop-rails', '~> 2.33'
