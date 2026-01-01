@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.21'
 gem 'bootsnap', require: false
 gem 'dotenv-rails', '~> 3.1'
 gem 'jbuilder'
